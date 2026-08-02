@@ -1,0 +1,328 @@
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: stretch;
+  padding-top: 5.5rem;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6rem;
+  padding: 2rem var(--gutter) 6.5rem;
+  max-width: 640px;
+}
+
+.hero__title {
+  font-size: var(--fs-hero);
+  font-weight: 500;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--stone);
+}
+
+.hero__text {
+  font-size: 1.15rem;
+  max-width: 46ch;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.hero__panel {
+  position: relative;
+  min-height: 420px;
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 2.4rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 34px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.hero__scroll-line span {
+  display: block;
+  width: 100%;
+  height: 40%;
+  background: var(--bronze-bright);
+  animation: scrollDrip 2.2s var(--ease-in-out) infinite;
+}
+
+@keyframes scrollDrip {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(250%); }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero__content {
+    padding-bottom: 3rem;
+  }
+  .hero__panel {
+    min-height: 46vh;
+    order: -1;
+  }
+  .hero__scroll-cue {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Section rhythm
+   ========================================================================== */
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--tight {
+  padding-block: clamp(64px, 8vw, 120px);
+}
+
+.section__head {
+  max-width: 720px;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.section__head h2 {
+  font-size: var(--fs-h1);
+  margin-top: 0.8rem;
+}
+
+/* ==========================================================================
+   Signature statement
+   ========================================================================== */
+
+.signature {
+  text-align: center;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-block: var(--section-y);
+}
+
+.signature blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.signature cite {
+  display: block;
+  margin-top: 1.8rem;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bronze-bright);
+}
+
+/* ==========================================================================
+   Key figures
+   ========================================================================== */
+
+.figures {
+  position: relative;
+  padding-block: clamp(72px, 10vw, 140px);
+}
+
+.figures__wash {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.figures__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+@media (max-width: 900px) {
+  .figures__grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.5rem;
+  }
+}
+
+/* ==========================================================================
+   Philosophy / About
+   ========================================================================== */
+
+.philosophy {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.philosophy__swatch {
+  aspect-ratio: 3 / 4;
+}
+
+@media (max-width: 900px) {
+  .philosophy {
+    grid-template-columns: 1fr;
+  }
+  .philosophy__swatch {
+    max-width: 280px;
+    order: -1;
+  }
+}
+
+/* ==========================================================================
+   Projects
+   ========================================================================== */
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.projects__grid .card--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.card--featured .card__art {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 420px;
+}
+
+@media (max-width: 900px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+  .projects__grid .card--featured {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .card--featured .card__art {
+    min-height: 300px;
+    margin-inline: calc(-1 * var(--gutter));
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   Media recognition
+   ========================================================================== */
+
+.press__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.press-mark {
+  background: var(--bg);
+}
+
+@media (max-width: 700px) {
+  .press__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Contact CTA
+   ========================================================================== */
+
+.contact {
+  position: relative;
+  text-align: center;
+  padding-block: var(--section-y);
+  overflow: hidden;
+}
+
+.contact__wash {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.contact__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.contact h2 {
+  font-size: var(--fs-h1);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2.4rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.site-footer a:hover {
+  color: var(--stone);
+}
+
+.site-footer .site-nav__links a {
+  display: inline-flex;
+  align-items: center;
+  padding-block: 0.85rem;
+}

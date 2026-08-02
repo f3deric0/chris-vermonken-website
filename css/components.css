@@ -1,0 +1,419 @@
+/* ==========================================================================
+   Strata — the signature motif. Generated sediment banding standing in for
+   photography everywhere an image would go: hero, dividers, cards, panels.
+   ========================================================================== */
+
+.strata {
+  --band: 240px;
+  position: relative;
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--strata-4) 0px, var(--strata-4) 7.5%,
+    var(--strata-2) 7.5%, var(--strata-2) 19%,
+    var(--strata-5) 19%, var(--strata-5) 27%,
+    var(--strata-1) 27%, var(--strata-1) 54%,
+    var(--strata-3) 54%, var(--strata-3) 66%,
+    var(--strata-4) 66%, var(--strata-4) 100%
+  );
+  background-size: 100% var(--band);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.strata::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.strata::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(15, 15, 15, 0) 45%, rgba(15, 15, 15, 0.6) 100%);
+}
+
+.strata--horizontal {
+  --band: 340px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--strata-4) 0px, var(--strata-4) 7.5%,
+    var(--strata-2) 7.5%, var(--strata-2) 19%,
+    var(--strata-5) 19%, var(--strata-5) 27%,
+    var(--strata-1) 27%, var(--strata-1) 54%,
+    var(--strata-3) 54%, var(--strata-3) 66%,
+    var(--strata-4) 66%, var(--strata-4) 100%
+  );
+}
+
+.strata--horizontal::after {
+  background: linear-gradient(90deg, rgba(15, 15, 15, 0.5) 0%, rgba(15, 15, 15, 0) 30%, rgba(15, 15, 15, 0) 70%, rgba(15, 15, 15, 0.5) 100%);
+}
+
+.strata__label {
+  position: absolute;
+  z-index: 3;
+  right: 1.4rem;
+  bottom: 1.8rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+  opacity: 0.85;
+  writing-mode: vertical-rl;
+}
+
+.strata__sweep {
+  position: absolute;
+  z-index: 2;
+  inset: -20%;
+  background: linear-gradient(115deg, transparent 40%, rgba(245, 243, 239, 0.14) 50%, transparent 60%);
+  transform: translateX(-60%);
+  transition: transform 1.1s var(--ease-out);
+  pointer-events: none;
+}
+
+.strata:hover .strata__sweep,
+.strata:focus-within .strata__sweep {
+  transform: translateX(60%);
+}
+
+/* Divider — a thin strata band replaces the plain <hr> between sections */
+
+.divider {
+  height: 3px;
+  width: 100%;
+}
+
+.divider--rule {
+  height: 1px;
+  background: var(--line);
+  border: none;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem 1.8rem;
+  border: 1px solid transparent;
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  will-change: transform;
+}
+
+.btn-primary {
+  background: var(--bronze);
+  color: var(--bg);
+  border-color: var(--bronze);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--bronze-bright);
+  border-color: var(--bronze-bright);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  border-color: var(--stone);
+  color: var(--stone);
+}
+
+.btn__arrow {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Nav
+   ========================================================================== */
+
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem var(--gutter);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out), padding var(--dur-med) var(--ease-out);
+}
+
+.site-nav.is-scrolled {
+  background: rgba(15, 15, 15, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line);
+  padding-block: 1.1rem;
+}
+
+.site-nav__mark {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.site-nav__links {
+  display: flex;
+  gap: clamp(1.4rem, 3vw, 2.6rem);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.site-nav__links a {
+  position: relative;
+  padding-bottom: 4px;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: var(--bronze-bright);
+  transition: width var(--dur-med) var(--ease-out);
+}
+
+.site-nav__links a:hover,
+.site-nav__links a:focus-visible {
+  color: var(--text);
+}
+
+.site-nav__links a:hover::after,
+.site-nav__links a:focus-visible::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Mobile nav — toggle button + fullscreen overlay, swapped in for the
+   inline link row once it no longer fits the header comfortably.
+   ========================================================================== */
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+}
+
+.nav-toggle__line {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--text);
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__line:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__line:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out), visibility 0s linear var(--dur-med);
+}
+
+.mobile-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+
+.mobile-nav__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.mobile-nav__links a {
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  color: var(--text);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.mobile-nav__links a:hover,
+.mobile-nav__links a:focus-visible {
+  color: var(--stone);
+}
+
+@media (max-width: 720px) {
+  .site-nav__primary {
+    display: none;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+/* ==========================================================================
+   Stat / figure
+   ========================================================================== */
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-weight: 500;
+  color: var(--stone);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Card (project)
+   ========================================================================== */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__art {
+  aspect-ratio: 4 / 3;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.card:hover .card__art,
+.card:focus-within .card__art {
+  transform: scale(1.045);
+}
+
+.card__meta {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bronze-bright);
+}
+
+.card__title {
+  margin-top: 0.5rem;
+  font-size: var(--fs-h3);
+}
+
+.card--placeholder {
+  border: 1px solid var(--line);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.4rem;
+  aspect-ratio: 4 / 3;
+}
+
+.card--placeholder .eyebrow {
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Press mark (Media section)
+   ========================================================================== */
+
+.press-mark {
+  border: 1px solid var(--line);
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.press-mark:hover {
+  border-color: var(--bronze);
+  color: var(--stone);
+}
+
+/* ==========================================================================
+   Reveal (scroll-triggered fade/rise — JS toggles .is-visible)
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .strata__sweep {
+    display: none;
+  }
+}
