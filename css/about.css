@@ -1,0 +1,110 @@
+/* ==========================================================================
+   About hero
+   ========================================================================== */
+
+.about-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(8rem, 14vw, 11rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.about-hero__content {
+  max-width: 620px;
+}
+
+.about-hero__content h1 {
+  font-size: var(--fs-h1);
+  margin-top: 0.8rem;
+}
+
+.about-hero__lede {
+  margin-top: 1.4rem;
+  font-size: 1.05rem;
+}
+
+.about-hero__portrait {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    padding-top: 7rem;
+  }
+  .about-hero__portrait {
+    max-width: 340px;
+    margin-inline: auto;
+    order: -1;
+  }
+}
+
+/* ==========================================================================
+   Company
+   ========================================================================== */
+
+.company__tagline {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--stone);
+}
+
+.company__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.company__art {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+.company__facts {
+  margin-top: 1.8rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.company__facts dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bronze-bright);
+}
+
+.company__facts dd {
+  margin-left: 0;
+  margin-top: 0.2rem;
+  color: var(--text);
+  font-size: var(--fs-small);
+}
+
+.company__facts a {
+  color: var(--stone);
+  border-bottom: 1px solid var(--line);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.company__facts a:hover,
+.company__facts a:focus-visible {
+  color: var(--bronze-bright);
+  border-color: var(--bronze-bright);
+}
+
+@media (max-width: 900px) {
+  .company__layout {
+    grid-template-columns: 1fr;
+  }
+  .company__art {
+    order: -1;
+  }
+}

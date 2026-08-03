@@ -1,2 +1,4 @@
 .snapshots/
 .DS_Store
+*.dmg
+.vercel/
