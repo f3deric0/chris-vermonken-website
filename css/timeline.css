@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Career timeline — vertical line that fills as the reader scrolls,
+   sticky year markers, entries drawn from verified career history.
+   ========================================================================== */
+
+.timeline {
+  padding-top: clamp(56px, 8vw, 100px);
+}
+
+.timeline__intro {
+  max-width: 640px;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.timeline__intro h2 {
+  font-size: var(--fs-h1);
+  margin-top: 0.8rem;
+}
+
+.timeline__intro p {
+  margin-top: 1rem;
+}
+
+.timeline__track {
+  position: relative;
+}
+
+.timeline__line {
+  position: absolute;
+  left: 27px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline__line-fill {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0%;
+  background: linear-gradient(180deg, var(--bronze-bright), var(--bronze));
+  transform-origin: top;
+}
+
+.timeline__item {
+  position: relative;
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-left: 64px;
+  padding-block: 2rem;
+}
+
+.timeline__item:first-child {
+  padding-top: 0;
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 2.6rem;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--bronze-bright);
+  z-index: 1;
+}
+
+.timeline__year {
+  display: none;
+  position: sticky;
+  top: 6.5rem;
+  align-self: flex-start;
+  min-width: 84px;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  color: var(--stone);
+}
+
+.timeline__year-mobile {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--stone);
+  margin-bottom: 0.6rem;
+}
+
+.timeline__content h3 {
+  font-size: var(--fs-h3);
+}
+
+.timeline__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bronze-bright);
+  margin-top: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.timeline__content p:not(.timeline__meta):not(.timeline__year-mobile) {
+  font-size: var(--fs-small);
+  max-width: 52ch;
+}
+
+@media (min-width: 701px) {
+  .timeline__year {
+    display: block;
+  }
+  .timeline__year-mobile {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Education — compact reference list, deliberately not part of the
+   animated timeline: eleven credentials would read as a CV, not a bio.
+   ========================================================================== */
+
+.education {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.education h3 {
+  font-size: var(--fs-h3);
+  margin-bottom: 1.6rem;
+}
+
+.education__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem 3rem;
+}
+
+.education__list dt {
+  font-size: var(--fs-small);
+  color: var(--text);
+}
+
+.education__list dd {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-left: 0;
+  margin-top: 0.25rem;
+}
+
+.education__languages {
+  margin-top: 1.8rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.education__languages strong {
+  color: var(--bronze-bright);
+}
+
+@media (max-width: 700px) {
+  .education__list {
+    grid-template-columns: 1fr;
+  }
+}

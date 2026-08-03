@@ -116,6 +116,28 @@
     });
   }
 
+  /* Career timeline — the vertical line fills as the reader scrolls past it. */
+  const timelineTrack = document.querySelector('[data-timeline-track]');
+  const timelineFill = document.querySelector('[data-timeline-fill]');
+
+  if (timelineFill) {
+    if (window.ScrollTrigger && timelineTrack) {
+      gsap.set(timelineFill, { height: '0%' });
+      gsap.to(timelineFill, {
+        height: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: timelineTrack,
+          start: 'top 75%',
+          end: 'bottom 65%',
+          scrub: true,
+        },
+      });
+    } else {
+      timelineFill.style.height = '100%';
+    }
+  }
+
   /* Keep ScrollTrigger in sync with Lenis' virtual scroll position. */
   if (window.ScrollTrigger && window.__lenis) {
     window.__lenis.on('scroll', window.ScrollTrigger.update);
