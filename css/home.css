@@ -85,12 +85,15 @@
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
   .hero__content {
     padding-bottom: 3rem;
   }
   .hero__panel {
-    min-height: 46vh;
+    min-height: 0;
+    height: 42vh;
+    max-height: 320px;
     order: -1;
   }
   .hero__scroll-cue {

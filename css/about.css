@@ -89,6 +89,9 @@
 }
 
 .company__facts a {
+  display: inline-block;
+  padding-block: 0.85rem;
+  margin-block: -0.85rem;
   color: var(--stone);
   border-bottom: 1px solid var(--line);
   transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);

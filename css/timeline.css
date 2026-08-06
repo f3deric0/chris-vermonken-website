@@ -4,7 +4,8 @@
    ========================================================================== */
 
 .timeline {
-  padding-top: clamp(56px, 8vw, 100px);
+  /* Lives inside a .section wrapper, which already supplies top padding —
+     no padding-top here to avoid doubling up the vertical gap. */
 }
 
 .timeline__intro {
