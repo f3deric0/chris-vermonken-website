@@ -25,8 +25,8 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
+  opacity: 0.16;
+  mix-blend-mode: multiply;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -37,7 +37,7 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(15, 15, 15, 0) 45%, rgba(15, 15, 15, 0.6) 100%);
+  background: linear-gradient(180deg, rgba(250, 249, 246, 0) 45%, rgba(250, 249, 246, 0.6) 100%);
 }
 
 .strata--horizontal {
@@ -54,7 +54,7 @@
 }
 
 .strata--horizontal::after {
-  background: linear-gradient(90deg, rgba(15, 15, 15, 0.5) 0%, rgba(15, 15, 15, 0) 30%, rgba(15, 15, 15, 0) 70%, rgba(15, 15, 15, 0.5) 100%);
+  background: linear-gradient(90deg, rgba(250, 249, 246, 0.5) 0%, rgba(250, 249, 246, 0) 30%, rgba(250, 249, 246, 0) 70%, rgba(250, 249, 246, 0.5) 100%);
 }
 
 .strata__label {
@@ -75,7 +75,7 @@
   position: absolute;
   z-index: 2;
   inset: -20%;
-  background: linear-gradient(115deg, transparent 40%, rgba(245, 243, 239, 0.14) 50%, transparent 60%);
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
   transform: translateX(-60%);
   transition: transform 1.1s var(--ease-out);
   pointer-events: none;
@@ -84,6 +84,26 @@
 .strata:hover .strata__sweep,
 .strata:focus-within .strata__sweep {
   transform: translateX(60%);
+}
+
+/* ==========================================================================
+   Media — photo frame. Wraps .strata so the sediment texture keeps showing
+   as a backdrop until a real <picture> is uncommented into the frame; once
+   a photo lands, it covers the strata background completely.
+   ========================================================================== */
+
+.media {
+  display: block;
+}
+
+.media > picture,
+.media > picture img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Divider — a thin strata band replaces the plain <hr> between sections */
@@ -168,7 +188,7 @@
 }
 
 .site-nav.is-scrolled {
-  background: rgba(15, 15, 15, 0.86);
+  background: rgba(250, 249, 246, 0.82);
   backdrop-filter: blur(10px);
   border-bottom-color: var(--line);
   padding-block: 1.1rem;
@@ -336,6 +356,7 @@
 .card__art {
   aspect-ratio: 4 / 3;
   transition: transform var(--dur-slow) var(--ease-out);
+  box-shadow: 0 1px 2px rgba(11, 11, 12, 0.04), 0 8px 24px -12px rgba(11, 11, 12, 0.1);
 }
 
 .card:hover .card__art,
@@ -366,6 +387,7 @@
   text-align: center;
   padding: 2.4rem;
   aspect-ratio: 4 / 3;
+  box-shadow: 0 1px 2px rgba(11, 11, 12, 0.04), 0 8px 24px -12px rgba(11, 11, 12, 0.1);
 }
 
 .card--placeholder .eyebrow {
@@ -385,6 +407,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
+  box-shadow: 0 1px 2px rgba(11, 11, 12, 0.04);
   transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 

@@ -1,24 +1,37 @@
 :root {
-  /* Brand palette — fixed anchors, do not introduce new hues */
-  --bg: #0f0f0f;
-  --bg-soft: #181818;
-  --text: #f5f3ef;
-  --muted: #b9b2a6;
-  --stone: #d7cbb8;
-  --bronze: #8c6a44;
-  --bronze-bright: #b08a5c;
-  --line: #2a2a2a;
+  /* Light luxury palette — warm alabaster canvas, black ink, Pierre Bleue
+     slate as the sole accent (drawn from the stone the company quarries). */
+  --canvas: #faf9f6;
+  --surface: #ffffff;
+  --surface-sunk: #f2efea;
+  --ink: #0b0b0c;
+  --ink-muted: #605d57;
+  --slate: #3a4750;
+  --slate-deep: #26313a;
+  --slate-soft: #7c8892;
+  --rule: #e4e0d9;
+
+  /* Aliases — every other stylesheet still references these names, so the
+     palette swap lives here rather than as a site-wide rename. */
+  --bg: var(--canvas);
+  --bg-soft: var(--surface-sunk);
+  --text: var(--ink);
+  --muted: var(--ink-muted);
+  --stone: var(--slate);
+  --bronze: var(--slate);
+  --bronze-bright: var(--slate-deep);
+  --line: var(--rule);
 
   /* Derived, for strata banding only — mixes of the anchors above */
   --strata-1: color-mix(in srgb, var(--bg-soft) 100%, transparent);
-  --strata-2: color-mix(in srgb, var(--stone) 14%, var(--bg-soft));
-  --strata-3: color-mix(in srgb, var(--bronze) 22%, var(--bg-soft));
-  --strata-4: color-mix(in srgb, var(--stone) 8%, var(--bg));
-  --strata-5: color-mix(in srgb, var(--bronze) 12%, var(--bg));
+  --strata-2: color-mix(in srgb, var(--slate) 8%, var(--bg-soft));
+  --strata-3: color-mix(in srgb, var(--slate) 14%, var(--bg-soft));
+  --strata-4: color-mix(in srgb, var(--slate) 5%, var(--bg));
+  --strata-5: color-mix(in srgb, var(--slate) 10%, var(--bg));
 
   /* Type */
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
 
   --fs-hero: clamp(3.2rem, 7vw, 6.5rem);

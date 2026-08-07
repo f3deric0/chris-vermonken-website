@@ -51,6 +51,120 @@
   });
 
   /* ---------------------------------------------------------------------
+     Intro film — plays once, then hands off to the hero below. Skip and
+     Replay are the only controls; there is no play/pause/scrub chrome,
+     and the video never loops. No-ops on pages without [data-film].
+     --------------------------------------------------------------------- */
+  const film = document.querySelector('[data-film]');
+  const filmVideo = document.querySelector('[data-film-video]');
+  const filmSkip = document.querySelector('[data-film-skip]');
+  const filmReplay = document.querySelector('[data-film-replay]');
+
+  if (film && filmVideo) {
+    const nextSection = film.nextElementSibling;
+    let handedOff = false;
+    let userTookOver = false;
+    let stallTimer = null;
+
+    const markUserTookOver = () => {
+      userTookOver = true;
+    };
+    window.addEventListener('wheel', markUserTookOver, { once: true, passive: true });
+    window.addEventListener('touchmove', markUserTookOver, { once: true, passive: true });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' '].includes(event.key)) markUserTookOver();
+    }, { once: true });
+
+    const scrollToNext = () => {
+      if (!nextSection) return;
+      if (prefersReduced) {
+        nextSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+      } else if (lenis) {
+        lenis.scrollTo(nextSection, { duration: 1.6 });
+      } else {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    // Fires on natural end or stall timeout — respects a reader who has
+    // already started scrolling on their own so it never fights them.
+    const autoHandOff = () => {
+      if (handedOff || userTookOver) return;
+      handedOff = true;
+      if (stallTimer) {
+        clearTimeout(stallTimer);
+        stallTimer = null;
+      }
+      scrollToNext();
+    };
+
+    const showReplay = () => {
+      if (filmReplay) filmReplay.hidden = false;
+    };
+
+    if (prefersReduced) {
+      // No autoplay under reduced motion: show the poster, let the reader
+      // opt in via Replay, and any hand-off jumps instead of animating.
+      filmVideo.removeAttribute('autoplay');
+      showReplay();
+    } else {
+      filmVideo.addEventListener('loadedmetadata', () => {
+        const durationMs = (Number.isFinite(filmVideo.duration) ? filmVideo.duration : 20) * 1000;
+        // Buffer stalls can swallow 'ended' on mobile — this is the safety net.
+        stallTimer = window.setTimeout(autoHandOff, durationMs + 1200);
+      });
+
+      const playPromise = filmVideo.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        // Autoplay can be refused (Low Power Mode, data saver, etc.) —
+        // fall back to the poster frame plus an explicit Replay affordance.
+        playPromise.catch(showReplay);
+      }
+    }
+
+    filmVideo.addEventListener('ended', () => {
+      showReplay();
+      autoHandOff();
+    });
+
+    // A missing/broken source fires 'error' on the element rather than
+    // rejecting the play() promise — cover both so a 404'd video still
+    // degrades to poster + Replay instead of sitting silently forever.
+    filmVideo.addEventListener('error', showReplay);
+
+    // Belt-and-braces: when every <source> 404s, some browsers set
+    // networkState to NETWORK_NO_SOURCE without ever firing 'error' on
+    // the element, which would otherwise leave Replay hidden forever.
+    window.setTimeout(() => {
+      if (filmVideo.readyState === 0 && filmVideo.networkState === 3) {
+        showReplay();
+      }
+    }, 5000);
+
+    if (filmSkip) {
+      filmSkip.addEventListener('click', () => {
+        handedOff = true;
+        if (stallTimer) {
+          clearTimeout(stallTimer);
+          stallTimer = null;
+        }
+        scrollToNext();
+      });
+    }
+
+    if (filmReplay) {
+      filmReplay.addEventListener('click', () => {
+        filmReplay.hidden = true;
+        filmVideo.currentTime = 0;
+        const replayPromise = filmVideo.play();
+        if (replayPromise && typeof replayPromise.catch === 'function') {
+          replayPromise.catch(showReplay);
+        }
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------------------
      Nav — solidifies once the hero has scrolled past.
      --------------------------------------------------------------------- */
   const nav = document.querySelector('[data-nav]');

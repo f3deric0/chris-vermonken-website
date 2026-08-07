@@ -1,4 +1,96 @@
 /* ==========================================================================
+   Intro film — full-bleed opener, plays once, hands off to the hero below.
+   ========================================================================== */
+
+.film {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--surface-sunk);
+}
+
+.film__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.film__media::-webkit-media-controls,
+.film__media::-webkit-media-controls-enclosure,
+.film__media::-webkit-media-controls-panel,
+.film__media::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+.film__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(250, 249, 246, 0.92) 0%, rgba(250, 249, 246, 0) 20%, rgba(250, 249, 246, 0) 78%, rgba(250, 249, 246, 0.6) 100%);
+}
+
+.film__skip {
+  position: absolute;
+  z-index: 2;
+  right: var(--gutter);
+  bottom: 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 0.6rem 0.2rem;
+  transition: color var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+.film__skip:hover,
+.film__skip:focus-visible {
+  color: var(--bronze-bright);
+}
+
+.film__replay {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 2.4rem;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 0.8rem 1.4rem;
+  box-shadow: 0 1px 2px rgba(11, 11, 12, 0.04), 0 8px 24px -12px rgba(11, 11, 12, 0.16);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.film__replay[hidden] {
+  display: none;
+}
+
+.film__replay:hover,
+.film__replay:focus-visible {
+  color: var(--bronze-bright);
+  border-color: var(--bronze-bright);
+}
+
+@media (max-width: 720px) {
+  .film__skip {
+    right: var(--gutter);
+    bottom: 1.6rem;
+  }
+}
+
+/* ==========================================================================
    Hero
    ========================================================================== */
 
@@ -259,7 +351,7 @@
 }
 
 .press-mark {
-  background: var(--bg);
+  background: var(--surface);
 }
 
 @media (max-width: 700px) {

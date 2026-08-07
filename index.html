@@ -8,13 +8,31 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..400&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/video/opening-poster.jpg" fetchpriority="high">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/home.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Chris Vermorken",
+    "jobTitle": "Managing Director",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Carrières du Hainaut"
+    },
+    "url": "https://www.chrisvermorken.com/",
+    "sameAs": [
+      "https://www.linkedin.com/in/chris-vermorken-b3830a76/"
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -49,6 +67,21 @@
 
   <main id="main">
 
+    <!-- ================= INTRO FILM ================= -->
+    <section class="film" data-film aria-label="Introduction film">
+      <video class="film__media" data-film-video
+             poster="assets/video/opening-poster.jpg"
+             muted playsinline autoplay preload="auto"
+             disablepictureinpicture disableremoteplayback
+             controlslist="nodownload noplaybackrate noremoteplayback">
+        <source src="assets/video/opening.webm" type="video/webm">
+        <source src="assets/video/opening.mp4" type="video/mp4">
+      </video>
+      <div class="film__scrim" aria-hidden="true"></div>
+      <button type="button" class="film__skip" data-film-skip>Skip <span aria-hidden="true">&darr;</span></button>
+      <button type="button" class="film__replay" data-film-replay hidden>Replay film</button>
+    </section>
+
     <!-- ================= HERO ================= -->
     <section class="hero" id="home" aria-label="Introduction">
       <div class="hero__content">
@@ -68,7 +101,14 @@
         </div>
       </div>
 
-      <div class="hero__panel strata" data-hero-panel aria-hidden="true">
+      <div class="hero__panel media strata" data-hero-panel aria-hidden="true">
+        <!-- Drop in the extraction-face photo, then uncomment:
+        <picture>
+          <source type="image/avif" srcset="assets/images/hero-quarry.avif">
+          <source type="image/webp" srcset="assets/images/hero-quarry.webp">
+          <img src="assets/images/hero-quarry.jpg" alt="" width="1400" height="1800" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        -->
         <span class="strata__sweep"></span>
         <span class="strata__label">Material &mdash; Pierre Bleue</span>
       </div>
@@ -92,7 +132,15 @@
 
     <!-- ================= KEY FIGURES ================= -->
     <section class="figures" aria-label="Key figures">
-      <div class="figures__wash strata strata--horizontal" aria-hidden="true"></div>
+      <div class="figures__wash media strata strata--horizontal" aria-hidden="true">
+        <!-- Drop in the top-down sawn-slab texture, then uncomment:
+        <picture>
+          <source type="image/avif" srcset="assets/images/slab-texture.avif">
+          <source type="image/webp" srcset="assets/images/slab-texture.webp">
+          <img src="assets/images/slab-texture.jpg" alt="" width="2400" height="800" loading="lazy" decoding="async">
+        </picture>
+        -->
+      </div>
       <div class="container figures__grid">
         <div class="stat reveal">
           <span class="stat__value" data-count-to="1888" data-count-suffix="">0</span>
@@ -116,7 +164,14 @@
     <!-- ================= PHILOSOPHY ================= -->
     <section class="section container" id="philosophy" aria-label="Philosophy">
       <div class="philosophy">
-        <div class="philosophy__swatch strata reveal" aria-hidden="true">
+        <div class="philosophy__swatch media strata reveal" aria-hidden="true">
+          <!-- Drop in the macro stone-grain photo, then uncomment:
+          <picture>
+            <source type="image/avif" srcset="assets/images/stone-grain.avif">
+            <source type="image/webp" srcset="assets/images/stone-grain.webp">
+            <img src="assets/images/stone-grain.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+          </picture>
+          -->
           <span class="strata__sweep"></span>
         </div>
         <div>
@@ -145,7 +200,14 @@
 
       <div class="projects__grid">
         <article class="card card--featured reveal">
-          <div class="card__art strata" aria-hidden="true">
+          <div class="card__art media strata" aria-hidden="true">
+            <!-- Drop in the private-residence project photo, then uncomment:
+            <picture>
+              <source type="image/avif" srcset="assets/images/project-residence.avif">
+              <source type="image/webp" srcset="assets/images/project-residence.webp">
+              <img src="assets/images/project-residence.jpg" alt="" width="2000" height="1400" loading="lazy" decoding="async">
+            </picture>
+            -->
             <span class="strata__sweep"></span>
             <span class="strata__label">Pierre Bleue</span>
           </div>
@@ -194,7 +256,15 @@
 
     <!-- ================= CONTACT CTA ================= -->
     <section class="contact" id="contact" aria-label="Contact">
-      <div class="contact__wash strata strata--horizontal" aria-hidden="true"></div>
+      <div class="contact__wash media strata strata--horizontal" aria-hidden="true">
+        <!-- Drop in the high-key stone-texture photo, then uncomment:
+        <picture>
+          <source type="image/avif" srcset="assets/images/contact-texture.avif">
+          <source type="image/webp" srcset="assets/images/contact-texture.webp">
+          <img src="assets/images/contact-texture.jpg" alt="" width="2400" height="900" loading="lazy" decoding="async">
+        </picture>
+        -->
+      </div>
       <div class="contact__inner">
         <p class="eyebrow reveal">Get in Touch</p>
         <h2 class="reveal">Let&rsquo;s Discuss Your Project</h2>
